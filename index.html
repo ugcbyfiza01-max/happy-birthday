@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eternal Love Story</title>
+
+<!--
+  ============================================================
+  ETERNAL LOVE STORY — a private memory box
+  ============================================================
+  HOW TO CUSTOMIZE THIS SITE (read this first!)
+
+  1. PHOTOS  → put your image files in  assets/images/
+              → find <img src="assets/images/placeholder-photo.svg" ...>
+                and change the src to your file, e.g. assets/images/us-01.jpg
+              → each spot is marked with <!-- REPLACE PHOTO --> above it
+
+  2. VIDEOS  → put your video files in  assets/videos/
+              → find <source src="assets/videos/..."> tags
+              → marked with <!-- REPLACE VIDEO -->
+
+  3. VOICE NOTES → put audio files (mp3/m4a) in  assets/audio/
+              → find <source src="assets/audio/..."> inside .voice-note
+              → marked with <!-- REPLACE VOICE NOTE -->
+
+  4. BACKGROUND SONG → put your song in  assets/music/
+              → find <source src="assets/music/our-song.mp3">
+              → marked with <!-- REPLACE BACKGROUND SONG -->
+
+  5. TEXT    → every headline, date, and paragraph below is written in
+              plain English inside the HTML — just type over it.
+              Look for <!-- REPLACE TEXT --> comments for the big ones
+              (the letter, the timeline stories, the final message).
+
+  Nothing needs to be "coded" — just swap file names and words.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- floating grain / vignette overlay, purely decorative -->
+<div class="grain-overlay"></div>
+
+<!-- the gold thread that stitches through the whole story as you scroll -->
+<div class="thread-track" aria-hidden="true"><div class="thread-fill" id="threadFill"></div></div>
+
+<!-- ============================================================
+     BACKGROUND MUSIC PLAYER (floating, always accessible)
+     ============================================================ -->
+<div class="music-player" id="musicPlayer">
+  <button class="music-toggle" id="musicToggle" aria-label="Play background song">
+    <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </button>
+  <div class="music-info">
+    <span class="music-title">Our Song</span>
+    <div class="music-bars"><span></span><span></span><span></span><span></span></div>
+  </div>
+  <input type="range" id="musicVolume" class="music-volume" min="0" max="1" step="0.01" value="0.6" aria-label="Volume">
+  <!-- REPLACE BACKGROUND SONG: put your file in assets/music/ and update src below -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="assets/music/our-song.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- ============================================================
+     1. OPENING SCENE
+     ============================================================ -->
+<section class="hero" id="hero">
+  <canvas id="particles" class="particles"></canvas>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow reveal-line">a private collection, just for you</p>
+    <h1 class="hero-title">
+      <span class="line" data-line="1">Some people become</span>
+      <span class="line" data-line="2">chapters in our lives...</span>
+      <span class="line line-em" data-line="3">but some chapters</span>
+      <span class="line line-em" data-line="4">stay forever.</span>
+    </h1>
+
+    <button class="seal-button" id="beginBtn">
+      <span class="seal-ring"></span>
+      <span class="seal-label">Begin Our Story <span class="heart">❤</span></span>
+    </button>
+  </div>
+
+  <div class="scroll-hint">
+    <span></span>
+    <p>open the box</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. MEMORY TIMELINE
+     ============================================================ -->
+<section class="timeline" id="timeline">
+  <header class="section-header reveal">
+    <p class="section-eyebrow">chapter one</p>
+    <h2 class="section-title">Our Story, As It Happened</h2>
+    <p class="section-sub">every date below is real. every photo, ours.</p>
+  </header>
+
+  <div class="timeline-track">
+
+    <!-- ---------- TIMELINE ITEM 1 ---------- -->
+    <article class="timeline-item reveal" data-index="1">
+      <div class="timeline-node"><span>1</span></div>
+      <div class="timeline-card">
+        <!-- REPLACE TEXT: date -->
+        <p class="card-date">Autumn, the year it started</p>
+        <h3 class="card-title">The Beginning</h3>
+        <!-- REPLACE TEXT: story -->
+        <p class="card-desc">Write about how it started — the first message, the first time your eyes met, the first nervous laugh. Keep it exactly the way you remember it.</p>
+
+        <!-- REPLACE PHOTO -->
+        <div class="card-media">
+          <img src="assets/images/placeholder-photo.svg" alt="Replace with a photo from the beginning" loading="lazy">
+        </div>
+
+        <!-- REPLACE VIDEO: optional — delete this whole .card-video-wrap if you don't have a clip for this memory -->
+        <div class="card-video-wrap">
+          <video class="card-video" controls playsinline poster="assets/images/placeholder-photo.svg">
+            <source src="assets/videos/the-beginning.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- TIMELINE ITEM 2 ---------- -->
+    <article class="timeline-item reveal" data-index="2">
+      <div class="timeline-node"><span>2</span></div>
+      <div class="timeline-card">
+        <p class="card-date">Add the date</p>
+        <h3 class="card-title">Beautiful Memories</h3>
+        <p class="card-desc">Write about a trip, a night out, a place you both loved. Describe what made it beautiful, not just what happened.</p>
+        <div class="card-media">
+          <img src="assets/images/placeholder-photo.svg" alt="Replace with a beautiful memory" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- TIMELINE ITEM 3 ---------- -->
+    <article class="timeline-item reveal" data-index="3">
+      <div class="timeline-node"><span>3</span></div>
+      <div class="timeline-card">
+        <p class="card-date">Add the date</p>
+        <h3 class="card-title">The Little Things</h3>
+        <p class="card-desc">Write about the small, ordinary moments — an inside joke, a silly nickname, the way they made you laugh over nothing. These are usually the ones people miss most.</p>
+        <div class="card-media">
+          <img src="assets/images/placeholder-photo.svg" alt="Replace with a little-things memory" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- TIMELINE ITEM 4 ---------- -->
+    <article class="timeline-item reveal" data-index="4">
+      <div class="timeline-node"><span>4</span></div>
+      <div class="timeline-card">
+        <p class="card-date">Add the date</p>
+        <h3 class="card-title">Moments I Will Always Remember</h3>
+        <p class="card-desc">Write about a moment that felt bigger than the rest — something you knew you'd carry with you.</p>
+        <div class="card-media">
+          <img src="assets/images/placeholder-photo.svg" alt="Replace with an unforgettable moment" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- TIMELINE ITEM 5 ---------- -->
+    <article class="timeline-item reveal" data-index="5">
+      <div class="timeline-node"><span>5</span></div>
+      <div class="timeline-card">
+        <p class="card-date">Add the date</p>
+        <h3 class="card-title">A Chapter I Will Always Treasure</h3>
+        <p class="card-desc">Write your closing reflection on this chapter of your story — however it looked, whatever it means to you now.</p>
+        <div class="card-media">
+          <img src="assets/images/placeholder-photo.svg" alt="Replace with a treasured memory" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- to add MORE timeline chapters: copy one <article class="timeline-item reveal"> block
+         (including its closing </article> tag), paste it below, change data-index and the text -->
+
+  </div>
+</section>
+
+<!-- ============================================================
+     3. PHOTO GALLERY (polaroids)
+     ============================================================ -->
+<section class="gallery" id="gallery">
+  <header class="section-header reveal">
+    <p class="section-eyebrow">chapter two</p>
+    <h2 class="section-title">A Handful of Polaroids</h2>
+    <p class="section-sub">click any photo to look closer</p>
+  </header>
+
+  <div class="polaroid-field">
+    <!-- REPLACE PHOTO — repeat this .polaroid block for as many photos as you like -->
+    <figure class="polaroid reveal" style="--rot:-6deg">
+      <img src="assets/images/placeholder-photo.svg" alt="Replace with photo 1" loading="lazy">
+      <figcaption>write a tiny caption</figcaption>
+    </figure>
+    <figure class="polaroid reveal" style="--rot:4deg">
+      <img src="assets/images/placeholder-photo.svg" alt="Replace with photo 2" loading="lazy">
+      <figcaption>write a tiny caption</figcaption>
+    </figure>
+    <figure class="polaroid reveal" style="--rot:-3deg">
+      <img src="assets/images/placeholder-photo.svg" alt="Replace with photo 3" loading="lazy">
+      <figcaption>write a tiny caption</figcaption>
+    </figure>
+    <figure class="polaroid reveal" style="--rot:7deg">
+      <img src="assets/images/placeholder-photo.svg" alt="Replace with photo 4" loading="lazy">
+      <figcaption>write a tiny caption</figcaption>
+    </figure>
+    <figure class="polaroid reveal" style="--rot:-8deg">
+      <img src="assets/images/placeholder-photo.svg" alt="Replace with photo 5" loading="lazy">
+      <figcaption>write a tiny caption</figcaption>
+    </figure>
+    <figure class="polaroid reveal" style="--rot:5deg">
+      <img src="assets/images/placeholder-photo.svg" alt="Replace with photo 6" loading="lazy">
+      <figcaption>write a tiny caption</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- lightbox for gallery -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- ============================================================
+     4. VIDEO SECTION
+     ============================================================ -->
+<section class="videos" id="videos">
+  <header class="section-header reveal">
+    <p class="section-eyebrow">chapter three</p>
+    <h2 class="section-title">Little Films of Us</h2>
+    <p class="section-sub">moments that moved</p>
+  </header>
+
+  <div class="video-grid">
+    <!-- REPLACE VIDEO — repeat this .film-card block for more clips -->
+    <div class="film-card reveal">
+      <video class="film-video" playsinline preload="metadata" poster="assets/images/placeholder-photo.svg">
+        <source src="assets/videos/clip-01.mp4" type="video/mp4">
+      </video>
+      <button class="film-play" aria-label="Play video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <p class="film-caption">write a caption for this clip</p>
+    </div>
+
+    <div class="film-card reveal">
+      <video class="film-video" playsinline preload="metadata" poster="assets/images/placeholder-photo.svg">
+        <source src="assets/videos/clip-02.mp4" type="video/mp4">
+      </video>
+      <button class="film-play" aria-label="Play video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <p class="film-caption">write a caption for this clip</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. VOICE NOTES
+     ============================================================ -->
+<section class="voice-notes" id="voice-notes">
+  <header class="section-header reveal">
+    <p class="section-eyebrow">chapter four</p>
+    <h2 class="section-title">If You Want to Hear My Voice</h2>
+    <p class="section-sub">a few recordings I kept</p>
+  </header>
+
+  <div class="voice-list">
+    <!-- REPLACE VOICE NOTE — repeat this .voice-note block for more recordings -->
+    <div class="voice-note reveal">
+      <button class="voice-play" aria-label="Play voice note">
+        <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="voice-body">
+        <p class="voice-title">give this recording a title</p>
+        <div class="waveform">
+          <!-- bars are generated by script.js, no need to edit -->
+        </div>
+      </div>
+      <audio preload="none">
+        <source src="assets/audio/voice-note-01.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="voice-note reveal">
+      <button class="voice-play" aria-label="Play voice note">
+        <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="voice-body">
+        <p class="voice-title">give this recording a title</p>
+        <div class="waveform"></div>
+      </div>
+      <audio preload="none">
+        <source src="assets/audio/voice-note-02.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. THE LETTER
+     ============================================================ -->
+<section class="letter-section" id="letter">
+  <header class="section-header reveal">
+    <p class="section-eyebrow">chapter five</p>
+    <h2 class="section-title">A Letter</h2>
+  </header>
+
+  <div class="letter-paper reveal">
+    <div class="letter-tape"></div>
+    <!-- REPLACE TEXT: this is your handwritten letter. Type it out however you'd like — it will
+         "handwrite" itself on screen the first time it scrolls into view. -->
+    <p class="letter-text" id="letterText" data-full="Dear you,
+
+I wanted to give you something that isn't wrapped in paper. So I built this instead — a small room made of everything I remember.
+
+I hope it makes you smile the way you've made me smile, more times than I could ever count.
+
+Happy birthday.
+
+— always"></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. FINAL BIRTHDAY MESSAGE
+     ============================================================ -->
+<section class="finale" id="finale">
+  <canvas id="finaleParticles" class="particles"></canvas>
+  <div class="finale-content">
+    <p class="finale-eyebrow reveal">and, most of all...</p>
+    <h2 class="finale-title reveal">Happy Birthday <span class="heart">❤</span></h2>
+    <!-- REPLACE TEXT: final message -->
+    <p class="finale-message reveal">Wherever this chapter goes from here, I'm glad it happened at all. Here's to you, today and always.</p>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
